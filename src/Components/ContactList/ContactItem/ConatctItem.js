@@ -1,15 +1,15 @@
 import React, { Component, Fragment } from 'react';
-import './Item.css';
+import './ContactItem.css';
 
 
-class Item extends Component {
+class ContactItem extends Component {
     state = {
-        name: 'Mike Tyson',
-        address: 'Harm , Stepana Bamderu str.',
-        phone: '(097)888-21-12',
-        email: 'tyson@gmail.com',
-        avatar: 54,
-        gender: 'men',
+        name: this.props.name,
+        address:  this.props.address,
+        phone: this.props.phone,
+        email: this.props.email,
+        avatar: this.props.avatar,
+        gender: this.props.gender,
         icon: 'far fa-star fa-2x'
     };
 
@@ -43,6 +43,8 @@ class Item extends Component {
         const { name, address, phone, email, avatar, gender, icon } = this.state;
         const URL = `https:api.randomuser.me/portraits/${gender}/${avatar}.jpg`;
 
+        console.log('Contact item props =>',this.props)
+
         return (
             <Fragment>
                 
@@ -65,12 +67,11 @@ class Item extends Component {
                             <span className="text-muted small text-truncate">{email}</span>
                         </div>
                     </div>
-                </li>
-
-                <div className='panel'>
+                    <div className='panel'>
                     <button className='btn  btn-success' onClick={this.onRandomAvatar}>Random avatar</button>
                     <i className={icon} onClick={this.onChangeIcon} style={{ color: 'darkorange', cursor: 'pointer' }}></i>
                 </div>
+                </li>
 
             </Fragment>
         )
@@ -81,4 +82,4 @@ class Item extends Component {
 
 };
 
-export default Item;
+export default ContactItem;
