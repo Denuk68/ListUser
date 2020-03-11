@@ -1,0 +1,11 @@
+.panel{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;    
+}
+
+button{
+    width: 200px;     
+}
+

@@ -11,7 +11,7 @@ const App = () => {
             <div className="container">
                 <div  id="card_contacts">
                     <div id="contacts" className="panel-collapse collapse show" aria-expanded="true">
-                        <h1 style={{ textAlign: 'center' }}>Contact List App</h1>
+                        <h1 style={{ textAlign: 'center' }}>Contact List App </h1>
                         <List />
                     </div>
                 </div>
