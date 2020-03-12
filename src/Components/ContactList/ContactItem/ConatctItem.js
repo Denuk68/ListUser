@@ -21,12 +21,12 @@ class ContactItem extends Component {
         });
     }
 
-    onIconChange = () => {
-        let iconDafault = this.state.icon;
-        this.setState({
-            icon: !iconDafault
-        })
-    }
+    // onIconChange = () => {
+    //     let iconDafault = this.state.icon;
+    //     this.setState({
+    //         icon: !iconDafault
+    //     })
+    // }
 
 
 
@@ -66,7 +66,10 @@ class ContactItem extends Component {
                     </div>
                     <div className='panel'>
                         <button className='btn  btn-success' onClick={this.onRandomAvatar}>Random avatar</button>
-                        <i className={favoriteStyle} onClick={this.onIconChange} style={{ color: 'darkorange', cursor: 'pointer' }}></i>
+                        <i className={favoriteStyle}
+                            onClick={this.props.onStarChange}
+                            style={{ color: 'darkorange', cursor: 'pointer' }}>
+                        </i>
                     </div>
                 </li>
 

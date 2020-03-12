@@ -1,11 +1,13 @@
 import React from 'react';
 import { Fragment } from "react";
-import ContactItem from './ContactItem/ConatctItem';
 import './ContactList.css';
 
+//Component
+import ContactItem from './ContactItem/ConatctItem';
 
-const ContactList = ({ List }) => {
-    console.log('ContactList =>', List);
+
+const ContactList = ({ List , onStarChange}) => {
+    // console.log('ContactList =>', List);
 
     const item = List.map(item => {
         return <ContactItem
@@ -17,6 +19,8 @@ const ContactList = ({ List }) => {
             avatar={item.avatar}
             gender={item.gender}
             icon={item.icon}
+            onStarChange
+            onStarChange={() => onStarChange(item.id)}
         />
     })
 

@@ -1,7 +1,9 @@
 import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
-import ContactList from './Components/ContactList/ContactList';
 import './index.css';
+
+//Component
+import ContactList from './Components/ContactList/ContactList';
 
 
 class App extends React.Component {
@@ -60,6 +62,9 @@ class App extends React.Component {
         ]
     };
 
+    onStarChange = id => {
+        console.log("onStarChange", id);
+    };
 
     render() {
 
@@ -70,7 +75,8 @@ class App extends React.Component {
                         <div id="contacts" className="panel-collapse collapse show" aria-expanded="true">
                             <h1 style={{ textAlign: 'center' }}>Contact List App </h1>
                             <ContactList
-                            List={this.state.List}                                
+                                List={this.state.List}
+                                onStarChange={this.onStarChange}
                             />
                         </div>
                     </div>
