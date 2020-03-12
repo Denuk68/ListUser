@@ -4,7 +4,6 @@ import ContactList from './Components/ContactList/ContactList';
 import './index.css';
 
 
-
 class App extends React.Component {
     state = {
         List: [
@@ -16,7 +15,7 @@ class App extends React.Component {
                 email: 'tyson@gmail.com',
                 avatar: 54,
                 gender: 'men',
-                icon: 'far fa-star fa-2x'
+                icon: false
             },
             {
                 id: 2,
@@ -26,7 +25,7 @@ class App extends React.Component {
                 email: 'mike.ana@gmail.com',
                 avatar: 34,
                 gender: 'men',
-                icon: 'far fa-star fa-2x'
+                icon: true
             },
             {
                 id: 3,
@@ -36,7 +35,7 @@ class App extends React.Component {
                 email: 'john@gmail.com',
                 avatar: 24,
                 gender: 'men',
-                icon: 'far fa-star fa-2x'
+                icon: false
             },
             {
                 id: 4,
@@ -46,20 +45,21 @@ class App extends React.Component {
                 email: 'luis@gmail.com',
                 avatar: 14,
                 gender: 'men',
-                icon: 'far fa-star fa-2x'
+                icon: true
             },
             {
-                id: 5 ,
+                id: 5,
                 name: 'Michael Jordan',
                 address: 'Harm , S.Petlury str.',
                 phone: '(097)832-21-43',
                 email: 'michael@gmail.com',
                 avatar: 64,
                 gender: 'men',
-                icon: 'far fa-star fa-2x'
+                icon: false
             }
         ]
     };
+
 
     render() {
 
@@ -69,12 +69,14 @@ class App extends React.Component {
                     <div id="card_contacts">
                         <div id="contacts" className="panel-collapse collapse show" aria-expanded="true">
                             <h1 style={{ textAlign: 'center' }}>Contact List App </h1>
-                            <ContactList List={this.state.List} />
+                            <ContactList
+                            List={this.state.List}                                
+                            />
                         </div>
                     </div>
                 </div>
             </Fragment>
-        )
+        );
     }
 }
 

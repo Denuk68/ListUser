@@ -5,12 +5,13 @@ import './ContactItem.css';
 class ContactItem extends Component {
     state = {
         name: this.props.name,
-        address:  this.props.address,
+        address: this.props.address,
         phone: this.props.phone,
         email: this.props.email,
         avatar: this.props.avatar,
         gender: this.props.gender,
-        icon: 'far fa-star fa-2x'
+        icon: this.props.icon
+
     };
 
     onRandomAvatar = () => {
@@ -20,21 +21,11 @@ class ContactItem extends Component {
         });
     }
 
-
-
-    onChangeIcon = () => {
-        if (this.state.icon === 'far fa-star fa-2x') {
-            const icon = 'fas fa-star fa-2x'
-            this.setState({
-                icon: icon
-            });
-        }
-        else {
-            const icon = 'far fa-star fa-2x'
-            this.setState({
-                icon: icon
-            });
-        }
+    onIconChange = () => {
+        let iconDafault = this.state.icon;
+        this.setState({
+            icon: !iconDafault
+        })
     }
 
 
@@ -43,11 +34,17 @@ class ContactItem extends Component {
         const { name, address, phone, email, avatar, gender, icon } = this.state;
         const URL = `https:api.randomuser.me/portraits/${gender}/${avatar}.jpg`;
 
-        console.log('Contact item props =>',this.props)
+        // console.log('Contact item props =>', this.props);
+
+        if (icon) {
+            var favoriteStyle = "fas fa-star fa-2x";
+        } else {
+            var favoriteStyle = "far fa-star fa-2x";
+        }
 
         return (
             <Fragment>
-                
+
                 <li className="list-group-item">
                     <div className="row w-100">
                         <div className="col-12 col-sm-6 col-md-3 px-0">
@@ -68,9 +65,9 @@ class ContactItem extends Component {
                         </div>
                     </div>
                     <div className='panel'>
-                    <button className='btn  btn-success' onClick={this.onRandomAvatar}>Random avatar</button>
-                    <i className={icon} onClick={this.onChangeIcon} style={{ color: 'darkorange', cursor: 'pointer' }}></i>
-                </div>
+                        <button className='btn  btn-success' onClick={this.onRandomAvatar}>Random avatar</button>
+                        <i className={favoriteStyle} onClick={this.onIconChange} style={{ color: 'darkorange', cursor: 'pointer' }}></i>
+                    </div>
                 </li>
 
             </Fragment>

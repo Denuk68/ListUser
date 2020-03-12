@@ -5,7 +5,7 @@ import './ContactList.css';
 
 
 const ContactList = ({ List }) => {
-    console.log('List =>', List);
+    console.log('ContactList =>', List);
 
     const item = List.map(item => {
         return <ContactItem
@@ -16,8 +16,10 @@ const ContactList = ({ List }) => {
             email={item.email}
             avatar={item.avatar}
             gender={item.gender}
-           />
+            icon={item.icon}
+        />
     })
+
 
     return (
 
