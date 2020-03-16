@@ -4,9 +4,10 @@ import './index.css';
 
 //Component
 import ContactList from './Components/ContactList/ContactList';
-
+import AddContact from './Components/AddContact/AddContact';
 
 class App extends React.Component {
+    currentID = 1000;
     state = {
         List: [
             {
@@ -29,42 +30,43 @@ class App extends React.Component {
                 gender: 'men',
                 icon: true
             },
-            {
-                id: 3,
-                name: 'John Stay',
-                address: '5267 Cackson St',
-                phone: '(097)788-21-15',
-                email: 'john@gmail.com',
-                avatar: 24,
-                gender: 'men',
-                icon: false
-            },
-            {
-                id: 4,
-                name: 'Luis Vam',
-                address: 'Harm , Chornovola str.',
-                phone: '(097)884-55-15',
-                email: 'luis@gmail.com',
-                avatar: 14,
-                gender: 'men',
-                icon: true
-            },
-            {
-                id: 5,
-                name: 'Michael Jordan',
-                address: 'Harm , S.Petlury str.',
-                phone: '(097)832-21-43',
-                email: 'michael@gmail.com',
-                avatar: 64,
-                gender: 'men',
-                icon: false
-            }
         ]
     };
 
     onStarChange = id => {
-        console.log("onStarChange", id);
+        // console.log("onStarChange", id);
+        this.setState(state => {
+            const index = this.state.List.findIndex(elem => elem.id === id);
+            // console.log('index =', index);
+            const newIcon = this.state.List.slice();
+            newIcon[index].icon = !newIcon[index].icon;
+
+            return {
+                icon: !this.newIcon
+            };
+        });
     };
+
+
+    onAddContact = (name, address, telNumber, email) => {
+        // console.log('NewName =  ', name);
+        // console.log('NewAddress = ', address);
+        // console.log('NewTelNumber = ', telNumber);
+        // console.log('NewEmail = ', email);
+
+        let newContact = {
+            id: this.currentID++,
+            name: name,
+            address: address,
+            phone: telNumber,
+            email: email,
+            avatar: 24,
+            gender: 'men',
+            icon: false
+        };
+        console.log(newContact)
+    }
+
 
     render() {
 
@@ -77,6 +79,9 @@ class App extends React.Component {
                             <ContactList
                                 List={this.state.List}
                                 onStarChange={this.onStarChange}
+                            />
+                            <AddContact
+                                onAddContact={this.onAddContact}
                             />
                         </div>
                     </div>

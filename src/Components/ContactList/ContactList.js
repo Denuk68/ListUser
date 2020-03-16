@@ -19,7 +19,6 @@ const ContactList = ({ List , onStarChange}) => {
             avatar={item.avatar}
             gender={item.gender}
             icon={item.icon}
-            onStarChange
             onStarChange={() => onStarChange(item.id)}
         />
     })

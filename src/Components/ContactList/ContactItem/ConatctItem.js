@@ -21,14 +21,7 @@ class ContactItem extends Component {
         });
     }
 
-    // onIconChange = () => {
-    //     let iconDafault = this.state.icon;
-    //     this.setState({
-    //         icon: !iconDafault
-    //     })
-    // }
-
-
+ 
 
     render() {
         const { name, address, phone, email, avatar, gender, icon } = this.state;
@@ -36,7 +29,7 @@ class ContactItem extends Component {
 
         // console.log('Contact item props =>', this.props);
 
-        if (icon) {
+        if (this.props.icon) {
             var favoriteStyle = "fas fa-star fa-2x";
         } else {
             var favoriteStyle = "far fa-star fa-2x";
