@@ -5,10 +5,13 @@ class AddContact extends React.Component {
     state = {
         name: null,
         address: null,
-        gender: "men",
+        gender: null,
         telNumber: null,
-        email: null
+        email: null,
+        avatar: null
     };
+
+
 
     getName = event => {
         this.setState({
@@ -34,22 +37,30 @@ class AddContact extends React.Component {
         });
     };
 
-  
+    getAvatar = event => {
+        this.setState({
+            avatar: event.target.value
+        });
+    };
 
-    onSubmit = event => {
+
+
+    onSendData = event => {
         event.preventDefault();
+        const { name, address, telNumber, email, avatar } = this.state;
         this.props.onAddContact(
-            this.state.name , 
-            this.state.address,
-            this.state.telNumber,
-            this.state.email,
-            );
+            name,
+            address,
+            telNumber,
+            email,
+            avatar
+        )
     };
 
     render() {
         return (
             <div>
-                <form onSubmit={this.onSubmit}>
+                <form onSubmit={this.onSendData}>
                     <input
                         type="text"
                         placeholder="Name"
@@ -62,30 +73,36 @@ class AddContact extends React.Component {
                         className="form-control"
                         onChange={this.getAddress}
                     />
-                     <input
+                    <input
                         type="text"
                         placeholder="TelNumber"
                         className="form-control"
                         onChange={this.getTell}
                     />
-                     <input
+                    <input
                         type="text"
                         placeholder="Email"
                         className="form-control"
                         onChange={this.getEmail}
                     />
                     <input
+                        type="number"
+                        min='1'
+                        max='99'
+                        placeholder="Avatar"
+                        className="form-control"
+                        onChange={this.getAvatar}
+                    />
+                    {/* <input
                         type="radio"
                         name="gender"
                         className="form-check-input"
                         value="men"
                         id="gender_man"
-                    />                   
-                    
-
+                    />
                     <label htmlFor="gender_man" className="form-check-label">
                         Men
-                    </label>
+                    </label> */}
                     <button className="btn btn-success" type="submit">
                         Add new contact
                     </button>

@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
+import uuid from 'uuid';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import './index.css';
 
 //Component
@@ -7,11 +9,10 @@ import ContactList from './Components/ContactList/ContactList';
 import AddContact from './Components/AddContact/AddContact';
 
 class App extends React.Component {
-    currentID = 1000;
     state = {
         List: [
             {
-                id: 1,
+                id: uuid(),
                 name: 'Mike Tyson',
                 address: '5842 Hillcrest Rd',
                 phone: '(870) 288-4149',
@@ -21,7 +22,7 @@ class App extends React.Component {
                 icon: false
             },
             {
-                id: 2,
+                id: uuid(),
                 name: 'Mike Anamendolla',
                 address: 'E North St',
                 phone: '(097)458-21-13',
@@ -47,24 +48,41 @@ class App extends React.Component {
         });
     };
 
+    onDeleteContact = id => {
+        const index = this.state.List.findIndex(elem => elem.id === id);
 
-    onAddContact = (name, address, telNumber, email) => {
-        // console.log('NewName =  ', name);
-        // console.log('NewAddress = ', address);
-        // console.log('NewTelNumber = ', telNumber);
-        // console.log('NewEmail = ', email);
+        const partOne = this.state.List.slice(0, index);
+        const partTwo = this.state.List.slice(index + 1);
+        const newList = [...partOne, ...partTwo];
+        this.setState(state => {
+            return {
+                List: newList
+            }
+        })
+    };
+
+
+    onAddContact = (name, address, telNumber, email, avatar) => {
 
         let newContact = {
-            id: this.currentID++,
+            id: uuid(),
             name: name,
             address: address,
             phone: telNumber,
             email: email,
-            avatar: 24,
-            gender: 'men',
+            avatar: avatar,
+            gender: 'women',
             icon: false
         };
-        console.log(newContact)
+        // console.log('onAddContact ', newContact)
+
+        const newList = [...this.state.List, newContact];
+        //   console.log('newList',newList);
+        this.setState(state => {
+            return {
+                List: newList
+            }
+        })
     }
 
 
@@ -75,14 +93,28 @@ class App extends React.Component {
                 <div className="container">
                     <div id="card_contacts">
                         <div id="contacts" className="panel-collapse collapse show" aria-expanded="true">
-                            <h1 style={{ textAlign: 'center' }}>Contact List App </h1>
-                            <ContactList
-                                List={this.state.List}
-                                onStarChange={this.onStarChange}
-                            />
-                            <AddContact
-                                onAddContact={this.onAddContact}
-                            />
+                            <Router>
+                                <Switch>
+                                    <Route
+                                        path="/"
+                                        exact
+                                        render={() => (
+                                            <ContactList
+                                                List={this.state.List}
+                                                onStarChange={this.onStarChange}
+                                                onDeleteContact={this.onDeleteContact}
+                                            />
+                                        )}
+                                    />
+                                    <Route
+                                        path="/contact"
+                                        exact
+                                        render={() => <AddContact onAddContact={this.onAddContact} />}
+                                    />
+                                </Switch>
+                            </Router>
+
+
                         </div>
                     </div>
                 </div>

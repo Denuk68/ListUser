@@ -6,7 +6,7 @@ import './ContactList.css';
 import ContactItem from './ContactItem/ConatctItem';
 
 
-const ContactList = ({ List , onStarChange}) => {
+const ContactList = ({ List , onStarChange,onDeleteContact}) => {
     // console.log('ContactList =>', List);
 
     const item = List.map(item => {
@@ -20,6 +20,7 @@ const ContactList = ({ List , onStarChange}) => {
             gender={item.gender}
             icon={item.icon}
             onStarChange={() => onStarChange(item.id)}
+            onDeleteContact={() => onDeleteContact(item.id)}
         />
     })
 
