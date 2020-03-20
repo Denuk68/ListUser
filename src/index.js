@@ -74,10 +74,10 @@ class App extends React.Component {
             gender: 'women',
             icon: false
         };
-        // console.log('onAddContact ', newContact)
+        console.log('onAddContact ', newContact)
 
         const newList = [...this.state.List, newContact];
-        //   console.log('newList',newList);
+          console.log('newList',newList);
         this.setState(state => {
             return {
                 List: newList
@@ -93,6 +93,20 @@ class App extends React.Component {
                 <div className="container">
                     <div id="card_contacts">
                         <div id="contacts" className="panel-collapse collapse show" aria-expanded="true">
+                            <nav className='mainNav'>
+                                <ul>
+                                    <li>
+                                        <a href="/">
+                                            Home
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/contact">
+                                            AddContact
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
                             <Router>
                                 <Switch>
                                     <Route

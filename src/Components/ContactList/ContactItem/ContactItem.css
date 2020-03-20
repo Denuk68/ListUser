@@ -2,9 +2,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 20px 0;    
+    margin: 20px 24px;    
 }
 
 button{
-    width: 200px;     
+    width: 175px;     
+}
+
+.fa-trash{
+    color: red;
+    cursor: pointer;
 }

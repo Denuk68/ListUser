@@ -37,7 +37,6 @@ class ContactItem extends Component {
 
         return (
             <Fragment>
-
                 <li className="list-group-item">
                     <div className="row w-100">
                         <div className="col-12 col-sm-6 col-md-3 px-0">
@@ -47,7 +46,7 @@ class ContactItem extends Component {
 
                         <div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
 
-                            <span className="fa fa-trash fa-2x text-success float-right pulse" 
+                            <span className="fa fa-trash fa-2x float-right " 
                                 title="delete"
                                 onClick={this.props.onDeleteContact}>
                             </span>
