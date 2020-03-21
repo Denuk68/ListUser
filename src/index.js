@@ -7,6 +7,7 @@ import './index.css';
 //Component
 import ContactList from './Components/ContactList/ContactList';
 import AddContact from './Components/AddContact/AddContact';
+import Header from './Components/Header/Header';
 
 class App extends React.Component {
     state = {
@@ -62,7 +63,7 @@ class App extends React.Component {
     };
 
 
-    onAddContact = (name, address, telNumber, email, avatar) => {
+    onAddContact = (name, address, telNumber, email, avatar,gender) => {
 
         let newContact = {
             id: uuid(),
@@ -71,7 +72,7 @@ class App extends React.Component {
             phone: telNumber,
             email: email,
             avatar: avatar,
-            gender: 'women',
+            gender: gender,
             icon: false
         };
         console.log('onAddContact ', newContact)
@@ -89,25 +90,12 @@ class App extends React.Component {
     render() {
 
         return (
-            <Fragment>
-                <div className="container">
+            <Fragment>                
+                <div className="container">                    
                     <div id="card_contacts">
-                        <div id="contacts" className="panel-collapse collapse show" aria-expanded="true">
-                            <nav className='mainNav'>
-                                <ul>
-                                    <li>
-                                        <a href="/">
-                                            Home
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/contact">
-                                            AddContact
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
+                        <div id="contacts" className="panel-collapse collapse show" aria-expanded="true">                      
                             <Router>
+                            <Header/>
                                 <Switch>
                                     <Route
                                         path="/"
@@ -127,7 +115,6 @@ class App extends React.Component {
                                     />
                                 </Switch>
                             </Router>
-
 
                         </div>
                     </div>

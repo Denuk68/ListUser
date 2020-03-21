@@ -1,0 +1,28 @@
+.navMain{
+    background-color: #28a745;
+    height: 100px; 
+    border:1px solid #dfdfdf;
+    align-items: center;
+  }
+  
+.navMain ul{
+    display: flex;
+    justify-content: space-around; 
+    list-style-type: none; 
+  }
+  
+.navMain li{
+    width: 150px; 
+    margin-top: 20px;
+  }
+  
+.navMain span{
+    color: #fff;
+    font-size: 25px;
+   }
+  
+ 
+.navMain span:hover{  
+    font-weight: bold;
+  }
+  

@@ -40,7 +40,7 @@ class ContactItem extends Component {
                 <li className="list-group-item">
                     <div className="row w-100">
                         <div className="col-12 col-sm-6 col-md-3 px-0">
-                            <img src={URL} alt="name"
+                            <img src={URL} alt="portret"
                                 className="rounded-circle mx-auto d-block img-fluid" />
                         </div>
 

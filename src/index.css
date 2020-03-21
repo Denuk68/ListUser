@@ -13,33 +13,6 @@ code {
 }
 
 
-.mainNav{
-  background-color: #28a745;
-  height: 100px; 
-  border:1px solid #dfdfdf;
-  align-items: center;
-}
-
-.mainNav ul{
-  display: flex;
-  justify-content: space-around; 
-  list-style-type: none; 
-}
-
-.mainNav li{
-  width: 150px;
-  margin-top: 20px;
-}
-
-.mainNav a{
-  color: #fff;
-  font-size: 25px;
-}
-
-.mainNav a:hover{
-  text-decoration-line: none;
-  font-weight: bold;
-}
 
 
 

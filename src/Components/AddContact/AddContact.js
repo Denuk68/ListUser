@@ -8,7 +8,8 @@ class AddContact extends React.Component {
         gender: null,
         telNumber: null,
         email: null,
-        avatar: null
+        avatar: null,
+        gender: null
     };
 
 
@@ -43,17 +44,24 @@ class AddContact extends React.Component {
         });
     };
 
+    getGender = event => {
+        this.setState({
+            gender: event.target.value
+        });
+    };
+
 
 
     onSendData = event => {
         event.preventDefault();
-        const { name, address, telNumber, email, avatar } = this.state;
+        const { name, address, telNumber, email, avatar, gender } = this.state;
         this.props.onAddContact(
             name,
             address,
             telNumber,
             email,
-            avatar
+            avatar,
+            gender
         )
     };
 
@@ -93,16 +101,32 @@ class AddContact extends React.Component {
                         className="form-control"
                         onChange={this.getAvatar}
                     />
-                    {/* <input
-                        type="radio"
-                        name="gender"
-                        className="form-check-input"
-                        value="men"
-                        id="gender_man"
-                    />
-                    <label htmlFor="gender_man" className="form-check-label">
-                        Men
-                    </label> */}
+
+                    <div className='radio'>
+                        <input
+                            type="radio"
+                            name="gender"
+                            className="form-check-input"
+                            value="men"
+                            id="gender_men"
+                            onChange={this.getGender}
+                        />
+                        <label htmlFor="gender_man" className="form-check-label">
+                            Men
+                        </label>
+
+                        <input
+                            type="radio"
+                            name="gender"
+                            className="form-check-input"
+                            value="women"
+                            id="gender_women"
+                            onChange={this.getGender}
+                        />
+                        <label htmlFor="gender_women" className="form-check-label">
+                            Women
+                        </label>
+                    </div>                    
                     <button className="btn btn-success" type="submit">
                         Add new contact
                     </button>
