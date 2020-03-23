@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import './ContactItem.css';
+import { Link } from 'react-router-dom';
 
 
 class ContactItem extends Component {
@@ -46,10 +47,18 @@ class ContactItem extends Component {
 
                         <div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
 
-                            <span className="fa fa-trash fa-2x float-right " 
-                                title="delete"
+                            <span
+                                className="fa fa-trash text-danger fa-2x float-right "
+                                title="Delete"
                                 onClick={this.props.onDeleteContact}>
                             </span>
+
+                            <Link
+                                to="/edit"
+                                className="fa fa-edit fa-2x text-success float-right pulse"
+                                title="Edit"
+                                onClick={this.props.onEditContact}
+                            ></Link>
 
                             <label className="name lead">{name}</label>
 

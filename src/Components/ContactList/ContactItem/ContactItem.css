@@ -9,7 +9,7 @@ button{
     width: 175px;     
 }
 
-.fa-trash{
-    color: red;
+.fa{
+    margin: 0 10px;
     cursor: pointer;
 }
