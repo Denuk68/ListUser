@@ -106,7 +106,7 @@ class AddContact extends React.Component {
                         <input
                             type="radio"
                             name="gender"
-                            className="form-check-input"
+                            // className="form-check-input"
                             value="men"
                             id="gender_men"
                             onChange={this.getGender}
@@ -114,11 +114,10 @@ class AddContact extends React.Component {
                         <label htmlFor="gender_man" className="form-check-label">
                             Men
                         </label>
-
                         <input
                             type="radio"
                             name="gender"
-                            className="form-check-input"
+                            // className="form-check-input"
                             value="women"
                             id="gender_women"
                             onChange={this.getGender}
@@ -126,11 +125,13 @@ class AddContact extends React.Component {
                         <label htmlFor="gender_women" className="form-check-label">
                             Women
                         </label>
-                    </div>                    
+                    </div>
+
                     <button className="btn btn-success" type="submit">
                         Add new contact
                     </button>
                 </form>
+
             </div>
         );
     }
