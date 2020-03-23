@@ -9,6 +9,7 @@ import ContactList from './Components/ContactList/ContactList';
 import AddContact from './Components/AddContact/AddContact';
 import Header from './Components/Header/Header';
 import EditContact from './Components/EditContact/EditContact';
+import NotFound from './Components/NotFound/NotFound';
 
 class App extends React.Component {
     state = {
@@ -142,7 +143,9 @@ class App extends React.Component {
                                     <Route
                                         path="/contact"
                                         exact
-                                        render={() => <AddContact onAddContact={this.onAddContact} />}
+                                        render={() => <AddContact 
+                                            onAddContact={this.onAddContact} />
+                                        }
                                     />
                                     <Route
                                         path='/edit'
@@ -154,6 +157,14 @@ class App extends React.Component {
                                                 onEditCurrentContact={this.onEditCurrentContact}
                                             />
                                         }
+                                    />
+                                    <Route
+                                       path="*"  
+                                       exact
+                                       render={() =>
+                                        <NotFound
+                                        />
+                                    }                                       
                                     />
                                 </Switch>
                             </Router>
