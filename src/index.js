@@ -12,30 +12,27 @@ import EditContact from './Components/EditContact/EditContact';
 import NotFound from './Components/NotFound/NotFound';
 
 class App extends React.Component {
+    URL = "https://contactlist-7e684.firebaseio.com/List.json";
+    componentDidMount() { 
+        this.updateContactList();
+                
+    }
+    updateContactList =()=>{
+        fetch(this.URL).then(response=>{
+            return response.json();
+        }).then(list=>{
+            this.setState({
+                List:list
+            })
+        }).catch(err=> console.log(err));
+    }  
+
+
+
     state = {
-        List: [
-            {
-                id: uuid(),
-                name: 'Mike Tyson',
-                address: '5842 Hillcrest Rd',
-                phone: '(870) 288-4149',
-                email: 'tyson@gmail.com',
-                avatar: 54,
-                gender: 'men',
-                icon: false
-            },
-            {
-                id: uuid(),
-                name: 'John Anamendolla',
-                address: 'E North St',
-                phone: '(097)458-21-13',
-                email: 'john.ana@gmail.com',
-                avatar: 34,
-                gender: 'men',
-                icon: true
-            },
-        ],
-        currentContact: ""
+        List: [],
+        currentContact: "",
+        findContact: ""
     };
 
     onStarChange = id => {
@@ -117,7 +114,26 @@ class App extends React.Component {
         })
     };
 
+    onSearch = contactName => {
+        this.setState({
+            findContact: contactName
+        });
+    };
+
+    onShowContactList = (List, findContact) => {
+        if (findContact.lenght === 0) {
+            return List;
+        }
+        return List.filter(item => {
+            return item.name.toLowerCase().indexOf(findContact.toLowerCase()) > -1;
+        })
+    }
+
     render() {
+        const showContacts = this.onShowContactList(
+            this.state.List,
+            this.state.findContact
+        )
 
         return (
             <Fragment>
@@ -126,14 +142,15 @@ class App extends React.Component {
                     <div id="card_contacts">
                         <div id="contacts" className="panel-collapse collapse show" aria-expanded="true">
                             <Router>
-                                <Header />
+                                <Header onSearch={this.onSearch} />
+
                                 <Switch>
                                     <Route
                                         path="/"
                                         exact
                                         render={() => (
                                             <ContactList
-                                                List={this.state.List}
+                                                List={showContacts}
                                                 onStarChange={this.onStarChange}
                                                 onDeleteContact={this.onDeleteContact}
                                                 onEditContact={this.onEditContact}
@@ -143,7 +160,7 @@ class App extends React.Component {
                                     <Route
                                         path="/contact"
                                         exact
-                                        render={() => <AddContact 
+                                        render={() => <AddContact
                                             onAddContact={this.onAddContact} />
                                         }
                                     />
@@ -159,12 +176,12 @@ class App extends React.Component {
                                         }
                                     />
                                     <Route
-                                       path="*"  
-                                       exact
-                                       render={() =>
-                                        <NotFound
-                                        />
-                                    }                                       
+                                        path="*"
+                                        exact
+                                        render={() =>
+                                            <NotFound
+                                            />
+                                        }
                                     />
                                 </Switch>
                             </Router>
