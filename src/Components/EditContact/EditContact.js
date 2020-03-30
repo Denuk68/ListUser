@@ -74,7 +74,7 @@ class EditContact extends React.Component {
     };
 
     render() {
-        const {name,address,telNumber,email,avatar,gender}=this.state;
+        const {name,address,telNumber,email,avatar}=this.state;
         // console.log("props =>", this.props);
         if (this.state.isRedirect) {
             return <Redirect to='/' />

@@ -10,7 +10,6 @@ class AddContact extends React.Component {
         telNumber: null,
         email: null,
         avatar: null,
-        gender: null,
         isRedirect: false
     };
 

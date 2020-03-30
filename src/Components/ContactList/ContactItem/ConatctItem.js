@@ -25,7 +25,7 @@ class ContactItem extends Component {
 
 
     render() {
-        const { name, address, phone, email, avatar, gender, icon } = this.state;
+        const { name, address, phone, email, avatar, gender} = this.state;
         const URL = `https:api.randomuser.me/portraits/${gender}/${avatar}.jpg`;
 
         // console.log('Contact id props =>', this.props.id);
@@ -33,7 +33,7 @@ class ContactItem extends Component {
         if (this.props.icon) {
             var favoriteStyle = "fas fa-star fa-2x";
         } else {
-            var favoriteStyle = "far fa-star fa-2x";
+             favoriteStyle = "far fa-star fa-2x";
         }
 
         return (

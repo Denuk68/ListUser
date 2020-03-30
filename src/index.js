@@ -13,21 +13,21 @@ import NotFound from './Components/NotFound/NotFound';
 
 class App extends React.Component {
     URL = "https://contactlist-7e684.firebaseio.com/List.json";
-    componentDidMount() { 
+
+    componentDidMount() {
         this.updateContactList();
-                
+
     }
-    updateContactList =()=>{
-        fetch(this.URL).then(response=>{
+
+    updateContactList = () => {
+        fetch(this.URL).then(response => {
             return response.json();
-        }).then(list=>{
+        }).then(list => {
             this.setState({
-                List:list
+                List: list
             })
-        }).catch(err=> console.log(err));
-    }  
-
-
+        }).catch(err => console.log(err));
+    }
 
     state = {
         List: [],
@@ -36,10 +36,8 @@ class App extends React.Component {
     };
 
     onStarChange = id => {
-        // console.log("onStarChange", id);
         this.setState(state => {
             const index = this.state.List.findIndex(elem => elem.id === id);
-            // console.log('index =', index);
             const newIcon = this.state.List.slice();
             newIcon[index].icon = !newIcon[index].icon;
 
@@ -49,22 +47,7 @@ class App extends React.Component {
         });
     };
 
-    onDeleteContact = id => {
-        const index = this.state.List.findIndex(elem => elem.id === id);
-
-        const partOne = this.state.List.slice(0, index);
-        const partTwo = this.state.List.slice(index + 1);
-        const newList = [...partOne, ...partTwo];
-        this.setState(state => {
-            return {
-                List: newList
-            }
-        })
-    };
-
-
     onAddContact = (name, address, telNumber, email, avatar, gender) => {
-
         let newContact = {
             id: uuid(),
             name: name,
@@ -75,24 +58,36 @@ class App extends React.Component {
             gender: gender,
             icon: false
         };
-        // console.log('onAddContact ', newContact)
+
         const newList = [...this.state.List, newContact];
-        // console.log('newList', newList);
+        this.onSaveData(newList)
+        this.setState(state => {
+            return {
+                List: newList
+            };
+        });
+    };
+
+    onDeleteContact = id => {
+        const index = this.state.List.findIndex(elem => elem.id === id);
+        const partOne = this.state.List.slice(0, index);
+        const partTwo = this.state.List.slice(index + 1);
+        const newList = [...partOne, ...partTwo];
+        this.onSaveData(newList);
         this.setState(state => {
             return {
                 List: newList
             }
         })
-    }
+    };
 
     onEditContact = id => {
         const index = this.state.List.findIndex(elem => elem.id === id);
-        const currentContact = this.state.List[index];
-        // console.log(currentContact);
+        const currentContact = this.state.List[index];     
         this.setState({
             currentContact: currentContact
         });
-    };
+    };  
 
     onEditCurrentContact = (name, address, telNumber, email, avatar, gender, id) => {
         const index = this.state.List.findIndex(elem => elem.id === id);
@@ -109,10 +104,27 @@ class App extends React.Component {
         const partOne = this.state.List.slice(0, index);
         const partTwo = this.state.List.slice(index + 1);
         const newList = [...partOne, editedContact, ...partTwo];
+        this.onSaveData(newList);
         this.setState({
             List: newList
         })
     };
+
+    async onSaveData(newList) {
+        await fetch(this.URL, {
+            method: 'PUT',
+            headers: {
+                'Component-Type': 'application/json'
+            },
+            body: JSON.stringify(newList)
+        })
+            .then(response => {
+                console.log('Response=> ', response)
+            })
+            .catch(err => console.log('Catch => ', err.Message));
+        this.updateContactList();
+    };
+
 
     onSearch = contactName => {
         this.setState({
@@ -128,6 +140,10 @@ class App extends React.Component {
             return item.name.toLowerCase().indexOf(findContact.toLowerCase()) > -1;
         })
     }
+
+
+
+
 
     render() {
         const showContacts = this.onShowContactList(
