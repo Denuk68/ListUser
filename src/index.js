@@ -23,9 +23,16 @@ class App extends React.Component {
         fetch(this.URL).then(response => {
             return response.json();
         }).then(list => {
-            this.setState({
-                List: list
-            })
+            if(list == null){
+                this.setState({
+                    List: []
+                })
+            }
+            else{
+                this.setState({
+                    List: list
+                })
+            }            
         }).catch(err => console.log(err));
     }
 

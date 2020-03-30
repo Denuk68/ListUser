@@ -36,7 +36,7 @@ const ContactList = ({
         <Fragment>
 
             <ul className="list-group pull-down" id="contact-list">
-                {item}
+                {item.lenght !== 0 ? item : <h2>Test</h2>}
             </ul>
 
         </Fragment>

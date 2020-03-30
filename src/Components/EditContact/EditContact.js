@@ -80,7 +80,7 @@ class EditContact extends React.Component {
             return <Redirect to='/' />
         }
         return (
-            <div>
+             <div>
                 <form onSubmit={this.onSendData}>
                     <input
                         type="text"
@@ -143,9 +143,8 @@ class EditContact extends React.Component {
                     <button className="btn btn-success" type="submit">
                         Save changes
                     </button>
-                </form>
-
-            </div>
+                </form>   
+             </div>                     
         );
     }
 }
